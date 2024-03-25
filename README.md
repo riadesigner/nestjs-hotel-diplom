@@ -1,6 +1,14 @@
 # NESTJS HOTEL SERVICE
 
-Небольшой дипломный проект – сервис бронирования 
+Небольшой дипломный проект (backend) – сервис бронирования для сети гостиниц
+
+### Модудули
+
+- Гостиницы/номера (Добавление, удаление, редактирование, файлы)
+- Резервирование номера
+- Аутентификация/Авторизация
+- Запросы в поддержку
+- Чат с менеджером
 
 ### Fist Initiation
 
@@ -10,36 +18,36 @@
 
 ### гостиницы
 
-- GET /api/admin/hotels / admin / 2.1.4. Получение списка гостиниц / ready
-- POST /api/admin/hotels / admin / 2.1.3. Добавление гостиницы / ready
-- PUT /api/admin/hotels/:id / admin / 2.1.5. Изменение описания гостиницы / ready
+- GET /api/admin/hotels / admin / 2.1.4. Получение списка гостиниц 
+- POST /api/admin/hotels / admin / 2.1.3. Добавление гостиницы 
+- PUT /api/admin/hotels/:id / admin / 2.1.5. Изменение описания гостиницы 
 
 ### номера
 
-- GET /api/common/hotel-rooms/:id / all / 2.1.2. Информация о конкретном номере / reay
-- GET /api/common/hotel-rooms / all / 2.1.1. Поиск номеров / reay
-- POST /api/admin/hotel-rooms/ admin / 2.1.6. Добавление номера / reay
-- PUT /api/admin/hotel-rooms/:id / admin / 2.1.7. Изменение описания номера / ready
+- GET /api/common/hotel-rooms/:id / all / 2.1.2. Информация о конкретном номере 
+- GET /api/common/hotel-rooms / all / 2.1.1. Поиск номеров
+- POST /api/admin/hotel-rooms/ admin / 2.1.6. Добавление номера
+- PUT /api/admin/hotel-rooms/:id / admin / 2.1.7. Изменение описания номера
 
 ### резервирование (бронь)
 
-- POST /api/client/reservations / client / 2.2.1. Бронирование номера клиентом / ready
-- GET /api/client/reservations / client / 2.2.2. Список броней текущего пользователя / ready
-- DELETE /api/client/reservations/:id / client / 2.2.3. Отмена бронирования клиентом / ready
-- GET /api/manager/reservations/:userId / manager / 2.2.4. Список броней конкретного пользователя / ready
-- DELETE /api/manager/reservations/:id / manager / 2.2.5. Отмена бронирования менеджером / ready
+- POST /api/client/reservations / client / 2.2.1. Бронирование номера клиентом
+- GET /api/client/reservations / client / 2.2.2. Список броней текущего пользователя
+- DELETE /api/client/reservations/:id / client / 2.2.3. Отмена бронирования клиентом
+- GET /api/manager/reservations/:userId / manager / 2.2.4. Список броней конкретного пользователя
+- DELETE /api/manager/reservations/:id / manager / 2.2.5. Отмена бронирования менеджером
 
 ### пользователи
 
-- POST /api/client/register / all / 2.3.3. Регистрация / ready
-- GET /api/manager/users / manager / 2.4.2. Получение списка пользователей / ready
-- GET /api/admin/users / admin / 2.4.2. Получение списка пользователей / ready
-- POST /api/admin/users / admin / 2.4.1. Создание пользователя / ready
+- POST /api/client/register / all / 2.3.3. Регистрация
+- GET /api/manager/users / manager / 2.4.2. Получение списка пользователей
+- GET /api/admin/users / admin / 2.4.2. Получение списка пользователей
+- POST /api/admin/users / admin / 2.4.1. Создание пользователя
 
 ### аутентификация
 
-- POST /api/auth/login (войти) / ready
-- POST /api/auth/logout (выйти) / ready
+- POST /api/auth/login (войти)
+- POST /api/auth/logout (выйти)
 
 ### чаты (поддержка)
 
@@ -53,12 +61,7 @@
 
 ### аутенитификация / авторизация
 
-[local.strategy.ts](./src/auth/local.strategy.ts), настраивает пару email/password   
-[local.guard.ts](./src/auth/local.guard.ts), вход по email/паролю и сохранение в сессию 
-[logged-in.guard.ts](./src/auth/logged-in.guard.ts), допускает к ресурсу, если пользователь авторизован   
-[admin.guard.ts](./src/auth/admin.guard.ts), допускает к ресурсу только Админов
-[manager.guard.ts](./src/auth/manager.guard.ts), допускает к ресурсу только Менеджеров
-[client.guard.ts](./src/auth/client.guard.ts), допускает к ресурсу только Клиентов
+Созданы роли – Администратор, Менеджер, Клиент
 
 ## ---------------------- ДОПОЛНИТЕЛЬНО -------------------------------
 
