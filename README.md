@@ -1,10 +1,12 @@
 # NESTJS HOTEL SERVICE
 
+Небольшой дипломный проект – сервис бронирования 
+
+### Fist Initiation
+
 При запуске проверяет есть ли в БД хоть один пользователь с ролью админа,   
 если нет, то добавляет первого админа с почтой super_admin@mail.ru и паролем super_pass   
    
-
-## ------------ CONTROLLERS SORTED BY MODULES (SITE SECTIONS) ------------ 
 
 ### гостиницы
 
@@ -48,9 +50,6 @@
 - POST /api/common/support-requests/:id/messages / client | manager / 2.5.5. Отправка сообщения / ready
 - POST /api/common/support-requests/:id/messages/read / client | manager / 2.5.6. Отправка события, что сообщения прочитаны / ready
 
-
-
-## ------------------------ ТЕХНИЧЕСКАЯ РЕАЛИЗАЦИЯ ------------------------ 
 
 ### аутенитификация / авторизация
 
