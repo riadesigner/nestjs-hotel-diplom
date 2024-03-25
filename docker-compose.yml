@@ -1,0 +1,49 @@
+version: "3.0"
+
+services:
+  
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+            - MONGO_INITDB_DATABASE=${DB_NAME}
+        ports:
+            - 27017:27017
+        volumes: 
+            - ./db_data:/data/db
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+          - 8081:8081
+        environment:
+          ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_LOGIN}
+          ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD}        
+          ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
+          ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+          ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017          
+
+    app-hotel:
+      image: node:20.9-alpine
+      restart: always
+      working_dir: /app
+      volumes:
+        - ./app:/app
+      ports:
+        - 8080:3000
+      environment:
+        - PORT=3000
+        - MONGO_URL=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017
+        - SESSION_SECRET=${SESSION_SECRET}
+        - DB_NAME=${DB_NAME}
+        - APP_SUPERADMIN_EMAIL=${APP_SUPERADMIN_EMAIL}
+        - APP_SUPERADMIN_PASSWORD=${APP_SUPERADMIN_PASSWORD}
+        - APP_UPLOADS_PATH=${APP_UPLOADS_PATH}
+      command: npm run start:dev
+      depends_on:
+        - mongo
+
+
